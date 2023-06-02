@@ -224,7 +224,7 @@ int32_t lsm6ds3_gy_data_sign_get(lsm6ds3_gy_sgn_t *val)
   * @retval          interface status (MANDATORY: return 0 -> no Error)
   *
   */
-int32_t lsm6ds3_xl_full_scale_set(lsm6ds3_xl_fs_t val)
+int32_t lsm6ds3_xl_full_scale_set(lsm6ds3_fs_xl_t val)
 {
   lsm6ds3_ctrl1_xl_t ctrl1_xl;
   int32_t ret;
@@ -247,13 +247,13 @@ int32_t lsm6ds3_xl_full_scale_set(lsm6ds3_xl_fs_t val)
   * @retval          interface status (MANDATORY: return 0 -> no Error)
   *
   */
-int32_t lsm6ds3_xl_full_scale_get(lsm6ds3_xl_fs_t *val)
+int32_t lsm6ds3_xl_full_scale_get(lsm6ds3_fs_xl_t *val)
 {
   lsm6ds3_ctrl1_xl_t ctrl1_xl;
   int32_t ret;
 
   ret = lsm6ds3_read_reg(LSM6DS3_CTRL1_XL, (uint8_t *)&ctrl1_xl, 1);
-  *val = (lsm6ds3_xl_fs_t)ctrl1_xl.fs_xl;
+  *val = (lsm6ds3_fs_xl_t)ctrl1_xl.fs_xl;
 
   return ret;
 }
@@ -996,7 +996,7 @@ int32_t lsm6ds3_timestamp_get(uint8_t *val)
   * @retval          interface status (MANDATORY: return 0 -> no Error)
   *
   */
-int32_t lsm6ds3_timestamp_res_set(lsm6ds3_ts_res_t val)
+int32_t lsm6ds3_timestamp_res_set(lsm6ds3_timer_hr_t val)
 {
   lsm6ds3_wake_up_dur_t wake_up_dur;
   int32_t ret;
@@ -1019,13 +1019,13 @@ int32_t lsm6ds3_timestamp_res_set(lsm6ds3_ts_res_t val)
   * @retval          interface status (MANDATORY: return 0 -> no Error)
   *
   */
-int32_t lsm6ds3_timestamp_res_get(lsm6ds3_ts_res_t *val)
+int32_t lsm6ds3_timestamp_res_get(lsm6ds3_timer_hr_t *val)
 {
   lsm6ds3_wake_up_dur_t wake_up_dur;
   int32_t ret;
 
   ret = lsm6ds3_read_reg(LSM6DS3_WAKE_UP_DUR, (uint8_t *)&wake_up_dur, 1);
-  *val = (lsm6ds3_ts_res_t)wake_up_dur.timer_hr;
+  *val = (lsm6ds3_timer_hr_t)wake_up_dur.timer_hr;
 
   return ret;
 }
@@ -1582,7 +1582,7 @@ int32_t lsm6ds3_filter_settling_mask_get(uint8_t *val)
   * @retval          interface status (MANDATORY: return 0 -> no Error)
   *
   */
-int32_t lsm6ds3_gy_hp_bandwidth_set(lsm6ds3_hpcf_g_t val)
+int32_t lsm6ds3_gy_hp_bandwidth_set(lsm6ds3_hp_bw_g_t val)
 {
   lsm6ds3_ctrl7_g_t ctrl7_g;
   int32_t ret;
@@ -1605,13 +1605,13 @@ int32_t lsm6ds3_gy_hp_bandwidth_set(lsm6ds3_hpcf_g_t val)
   * @retval          interface status (MANDATORY: return 0 -> no Error)
   *
   */
-int32_t lsm6ds3_gy_hp_bandwidth_get(lsm6ds3_hpcf_g_t *val)
+int32_t lsm6ds3_gy_hp_bandwidth_get(lsm6ds3_hp_bw_g_t *val)
 {
   lsm6ds3_ctrl7_g_t ctrl7_g;
   int32_t ret;
 
   ret = lsm6ds3_read_reg(LSM6DS3_CTRL7_G, (uint8_t *)&ctrl7_g, 1);
-  *val = (lsm6ds3_hpcf_g_t)ctrl7_g.hpcf_g;
+  *val = (lsm6ds3_hp_bw_g_t)ctrl7_g.hpcf_g;
 
   return ret;
 }
@@ -1664,7 +1664,7 @@ int32_t lsm6ds3_gy_hp_reset_get(uint8_t *val)
   * @retval          interface status (MANDATORY: return 0 -> no Error)
   *
   */
-int32_t lsm6ds3_xl_hp_bandwidth_set(lsm6ds3_hp_bw_t val)
+int32_t lsm6ds3_xl_hp_bandwidth_set(lsm6ds3_hp_bw_xl_t val)
 {
   lsm6ds3_ctrl8_xl_t ctrl8_xl;
   int32_t ret;
@@ -1688,13 +1688,13 @@ int32_t lsm6ds3_xl_hp_bandwidth_set(lsm6ds3_hp_bw_t val)
   * @retval          interface status (MANDATORY: return 0 -> no Error)
   *
   */
-int32_t lsm6ds3_xl_hp_bandwidth_get(lsm6ds3_hp_bw_t *val)
+int32_t lsm6ds3_xl_hp_bandwidth_get(lsm6ds3_hp_bw_xl_t *val)
 {
   lsm6ds3_ctrl8_xl_t ctrl8_xl;
   int32_t ret;
 
   ret = lsm6ds3_read_reg(LSM6DS3_CTRL8_XL, (uint8_t *)&ctrl8_xl, 1);
-  *val = (lsm6ds3_hp_bw_t)ctrl8_xl.hpcf_xl;
+  *val = (lsm6ds3_hp_bw_xl_t)ctrl8_xl.hpcf_xl;
 
   return ret;
 }
@@ -1706,7 +1706,7 @@ int32_t lsm6ds3_xl_hp_bandwidth_get(lsm6ds3_hp_bw_t *val)
   * @retval          interface status (MANDATORY: return 0 -> no Error)
   *
   */
-int32_t lsm6ds3_xl_lp2_bandwidth_set(lsm6ds3_lp_bw_t val)
+int32_t lsm6ds3_xl_lp2_bandwidth_set(lsm6ds3_lp_bw_xl_t val)
 {
   lsm6ds3_ctrl8_xl_t ctrl8_xl;
   int32_t ret;
@@ -1730,13 +1730,13 @@ int32_t lsm6ds3_xl_lp2_bandwidth_set(lsm6ds3_lp_bw_t val)
   * @retval          interface status (MANDATORY: return 0 -> no Error)
   *
   */
-int32_t lsm6ds3_xl_lp2_bandwidth_get(lsm6ds3_lp_bw_t *val)
+int32_t lsm6ds3_xl_lp2_bandwidth_get(lsm6ds3_lp_bw_xl_t *val)
 {
   lsm6ds3_ctrl8_xl_t ctrl8_xl;
   int32_t ret;
 
   ret = lsm6ds3_read_reg(LSM6DS3_CTRL8_XL, (uint8_t *)&ctrl8_xl, 1);
-  *val = (lsm6ds3_lp_bw_t)ctrl8_xl.hpcf_xl;
+  *val = (lsm6ds3_lp_bw_xl_t)ctrl8_xl.hpcf_xl;
 
   return ret;
 }
@@ -2134,7 +2134,7 @@ int32_t lsm6ds3_pin_mode_get(lsm6ds3_pp_od_t *val)
   * @retval          interface status (MANDATORY: return 0 -> no Error)
   *
   */
-int32_t lsm6ds3_pin_polarity_set(lsm6ds3_pin_pol_t val)
+int32_t lsm6ds3_pin_polarity_set(lsm6ds3_h_lactive_t val)
 {
   lsm6ds3_ctrl3_c_t ctrl3_c;
   int32_t ret;
@@ -2157,13 +2157,13 @@ int32_t lsm6ds3_pin_polarity_set(lsm6ds3_pin_pol_t val)
   * @retval          interface status (MANDATORY: return 0 -> no Error)
   *
   */
-int32_t lsm6ds3_pin_polarity_get(lsm6ds3_pin_pol_t *val)
+int32_t lsm6ds3_pin_polarity_get(lsm6ds3_h_lactive_t *val)
 {
   lsm6ds3_ctrl3_c_t ctrl3_c;
   int32_t ret;
 
   ret = lsm6ds3_read_reg(LSM6DS3_CTRL3_C, (uint8_t *)&ctrl3_c, 1);
-  *val = (lsm6ds3_pin_pol_t)ctrl3_c.h_lactive;
+  *val = (lsm6ds3_h_lactive_t)ctrl3_c.h_lactive;
 
   return ret;
 }
